@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">NoteShare</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout ({{ current_user.name }})</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Your Uploaded Notes</h1>
+        <section class="notes">
+            {% for note in notes %}
+            <div class="note">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.description }}</p>
+                <p><strong>Subject:</strong> {{ note.subject }}</p>
+                <a href="{{ url_for('uploaded_file', filename=note.file_name) }}" target="_blank">Download</a>
+                <a href="{{ url_for('delete_note', note_id=note.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NoteShare. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

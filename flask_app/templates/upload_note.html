@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Note</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">NoteShare</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout ({{ current_user.name }})</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Upload a New Note</h1>
+        <form action="{{ url_for('upload_note') }}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="description" placeholder="Description" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <input type="file" name="file" required>
+            <button type="submit">Upload</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NoteShare. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

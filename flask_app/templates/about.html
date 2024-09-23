@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="NoteShare Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <h1>About NoteShare</h1>
+            <p>NoteShare is an innovative platform designed to help students and professionals share and discover notes and resources. Whether you're a student looking for study materials or a professional seeking insights from others in your field, NoteShare is here to help.</p>
+
+            <div class="about-features">
+                <div class="feature">
+                    <h2>Our Mission</h2>
+                    <p>At NoteShare, our mission is to foster a collaborative environment where knowledge can be easily shared and accessed. We believe in the power of learning from others and making education more accessible to everyone.</p>
+                </div>
+
+                <div class="feature">
+                    <h2>What We Offer</h2>
+                    <p>We offer a wide variety of notes from different fields of study, including Python, Java, Flask, and much more. Users can upload their own notes, browse notes uploaded by others, and engage with the community to improve and share knowledge.</p>
+                </div>
+
+                <div class="feature">
+                    <h2>Our Team</h2>
+                    <p>We are a team of passionate educators, developers, and learners who are committed to making education more accessible and collaborative. We believe in open knowledge-sharing and are always looking for ways to improve the platform for our users.</p>
+                </div>
+            </div>
+        </section>
+        <section class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/one.jpg') }}" alt="Ajay Rajput">
+                    </div>
+                    <h3>Ajay Rajput</h3>
+                    <p>Co-Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/two.png') }}" alt="Jane Smith">
+                    </div>
+                    <h3>Jane Smith</h3>
+                    <p>Co-Founder & CTO</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/third.jpg') }}" alt="Emily Johnson">
+                    </div>
+                    <h3>Emily Johnson</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="{{ url_for('static', filename='images/fourth.jpg') }}" alt="Michael Lee">
+                    </div>
+                    <h3>Michael Lee</h3>
+                    <p>Community Manager</p>
+                </div>
+            </div>
+        </section>
+        
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>Your ultimate platform for sharing and discovering notes. Connect, collaborate, and grow together.</p>
+                <a href="/about">Learn more</a>
+            </div>
+    
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/notes">Notes</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+    
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+                <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+123456789">+123 456 789</a></p>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>© 2024 Your Website Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto;
+            max-width: 1000px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border: 1px solid #e1e1e1;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+            padding: 20px;
+            width: 80%;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .card a:hover {
+            color: #0056b3;
+        }
+        .card a i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+     <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="NoteShare Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout ({{ current_user.name }})</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <header>
+        Python Notes
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Select a Topic to Download:</h2>
+
+        <!-- Cards for Notes -->
+        <div class="card">
+            <a href="{{ url_for('static', filename='notes/Python_Basics.pdf') }}" target="_blank">
+                <i class="fas fa-file-pdf"></i> Python Basics
+            </a>
+        </div>
+        <div class="card">
+            <a href="{{ url_for('static', filename='notes/Object-Oriented Programming in Python.pdf') }}" target="_blank">
+                <i class="fas fa-file-pdf"></i> Object-Oriented Programming in Python
+            </a>
+        </div>
+        <div class="card">
+            <a href="{{ url_for('static', filename='notes/Python Libraries.pdf') }}" target="_blank">
+                <i class="fas fa-file-pdf"></i> Python Libraries
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 NoteShare. All rights reserved.
+    </footer>
+
+</body>
+</html>

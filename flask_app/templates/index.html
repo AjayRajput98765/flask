@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Sharing Website</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="NoteShare Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout ({{ current_user.name }})</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <div class="cta">
+            <h1>Unleash Your Knowledge</h1>
+            <p>Upload your notes, explore a world of insights, and connect with like-minded learners.</p>
+            <a href="{{ url_for('login') }}" class="cta-button">Get Started</a>
+        </div>                
+
+        {% for note in notes %}
+    <div class="note">
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.description }}</p>
+        <p><strong>Subject:</strong> {{ note.subject }}</p>
+        <p><strong>Views:</strong> {{ note.views }}</p>
+        <a href="{{ url_for('uploaded_file', filename=note.file_name) }}" target="_blank">Download</a>
+    </div>
+{% endfor %}
+        
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search for notes..." id="search">
+            <button onclick="searchNotes()">Search</button>
+        </div>
+
+
+        <!-- Hero Image -->
+        <div class="slider">
+            <div class="slides">
+                <!-- Radio buttons for navigation -->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+    
+                <!-- Slide images -->
+                <div class="slide first">
+                    <img src="{{ url_for('static', filename='images/11.jpg') }}" alt="College Life" >
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/12.jpg') }}" alt="Students">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/13.jpg') }}" alt="Education">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/14.jpg') }}" alt="Campus">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/15.jpg') }}" alt="Campus">
+                </div>
+    
+                <!-- Automatic navigation -->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                </div>
+    
+                <!-- Manual navigation -->
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Listing (Dynamic Notes) -->
+        <section class="notes-list">
+            {% for note in notes %}
+            <div class="note" data-title="{{ note.title }}" data-description="{{ note.description }}" data-subject="{{ note.subject }}">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.description }}</p>
+                <p><strong>Subject:</strong> {{ note.subject }}</p>
+                <p><strong>Views:</strong> {{ note.views }}</p>
+                <a href="{{ url_for('uploaded_file', filename=note.file_name) }}" target="_blank">Download</a>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- Static Notes Section -->
+        <h1>Popular Notes</h1>
+        <section class="static-notes">
+            <div class="note-card" data-title="Python Notes" data-description="Data Analysis, Web Development, and more.">
+                <a href="{{ url_for('python_notes') }}">
+                    <img src="{{ url_for('static', filename='images/103.png') }}" alt="Python Notes">
+                    <h3>Python Notes</h3>
+                    <p>Data Analysis, Web Development, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="C++ Notes" data-description="Data Structures, OOP, and more.">
+                <a href="{{ url_for('cpp_notes') }}">
+                    <img src="{{ url_for('static', filename='images/101.png') }}" alt="C++ Notes">
+                    <h3>C++ Notes</h3>
+                    <p>Data Structures, OOP, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="Java Notes" data-description="Multithreading, JVM Internals, and more.">
+                <a href="{{ url_for('java_notes') }}">
+                    <img src="{{ url_for('static', filename='images/104.png') }}" alt="Java Notes">
+                    <h3>Java Notes</h3>
+                    <p>Multithreading, JVM Internals, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="SQL Notes" data-description="Joins, Subqueries, and more.">
+                <a href="{{ url_for('sql_notes') }}">
+                    <img src="{{ url_for('static', filename='images/102.png') }}" alt="SQL Notes">
+                    <h3>SQL Notes</h3>
+                    <p>Joins, Subqueries, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="Flask Notes" data-description="Routing, Template Rendering, and more.">
+                <a href="{{ url_for('flask_notes') }}">
+                    <img src="{{ url_for('static', filename='images/105.png') }}" alt="Flask Notes">
+                    <h3>Flask Notes</h3>
+                    <p>Routing, Template Rendering, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="YouTube Notes" data-description="Video Editing, Channel Growth, and more.">
+                <a href="{{ url_for('youtube_notes') }}">
+                    <img src="{{ url_for('static', filename='images/110.png') }}" alt="YouTube Notes">
+                    <h3>YouTube Notes</h3>
+                    <p>Video Editing, Channel Growth, and more.</p>
+                </a>
+            </div>            
+            <div class="note-card" data-title="Django Notes" data-description="Web Development with Django, ORM, and more.">
+                <a href="{{ url_for('django_notes') }}">
+                    <img src="{{ url_for('static', filename='images/106.png') }}" alt="Django Notes">
+                    <h3>Django Notes</h3>
+                    <p>Web Development with Django, ORM, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="React Notes" data-description="Frontend Development, JSX, and more.">
+                <a href="{{ url_for('react_notes') }}">
+                    <img src="{{ url_for('static', filename='images/107.png') }}" alt="React Notes">
+                    <h3>React Notes</h3>
+                    <p>Frontend Development, JSX, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="R Notes" data-description="Statistical Computing, Data Visualization, and more.">
+                <a href="{{ url_for('r_notes') }}">
+                    <img src="{{ url_for('static', filename='images/108.png') }}" alt="R Notes">
+                    <h3>R Notes</h3>
+                    <p>Statistical Computing, Data Visualization, and more.</p>
+                </a>
+            </div>
+            <div class="note-card" data-title="Node.js Notes" data-description="Server-side Programming, Express.js, and more.">
+                <a href="{{ url_for('nodejs_notes') }}">
+                    <img src="{{ url_for('static', filename='images/109.png') }}" alt="Node.js Notes">
+                    <h3>Node.js Notes</h3>
+                    <p>Server-side Programming, Express.js, and more.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>Your ultimate platform for sharing and discovering notes. Connect, collaborate, and grow together.</p>
+                <a href="/about">Learn more</a>
+            </div>
+    
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/notes">Notes</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+    
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+                <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:+123456789">+123 456 789</a></p>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>© 2024 Your Website Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

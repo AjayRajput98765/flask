@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password | NoteShare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">NoteShare</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Enter a New Password</h1>
+        <form method="POST">
+            <input type="password" name="password" placeholder="New Password" required>
+            <button type="submit">Reset Password</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NoteShare. All rights reserved.</p>
+    </footer>
+</body>
+</html>
