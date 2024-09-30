@@ -7,9 +7,8 @@ from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask import send_from_directory, abort
-from flask_lambda import FlaskLambda
 
-app = FlaskLambda(__name__)
+app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # For session management and flash messages
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
